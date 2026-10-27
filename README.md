@@ -1,2 +1,2 @@
 # intelligent-PID
-Intelligent PID implementation 
+Intelligent PID implementation in Matlab & Python.
