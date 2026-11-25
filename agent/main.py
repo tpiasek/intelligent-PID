@@ -84,6 +84,7 @@ def simulate_closed_loop(
     integral = 0.0
     previous_error = reference - y[0]
     raw_derivative = 0.0
+    derivative_filtered = 0
     derivative_filter_alpha = 0.85
 
     for k in range(n - 1):
@@ -354,7 +355,7 @@ def main():
     total_timesteps = 10_000
     print(f"Training SAC for {total_timesteps:,} tuning steps...")
     model.learn(total_timesteps=total_timesteps, callback=callback)
-    model.save("sac_pid_tuner")
+    model.save("results/sac_pid_tuner")
     print("Saved trained policy to sac_pid_tuner.zip")
 
     # Compare initial and learned tuning on the same nominal plant.
@@ -455,7 +456,7 @@ def main():
     ax.grid(True, alpha=0.3)
 
     fig.tight_layout()
-    fig.savefig("rl_pid_tuning_results.png", dpi=160, bbox_inches="tight")
+    fig.savefig("img/rl_pid_tuning_results.png", dpi=160, bbox_inches="tight")
     print("\nSaved plot to rl_pid_tuning_results.png")
     plt.show()
 
